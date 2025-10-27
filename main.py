@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+
 # Create a form
 with st.form("my_form"):
     st.markdown("  **Model Prediction input data form**")
@@ -13,7 +15,7 @@ with st.form("my_form"):
                          help="Last name")
     # Add input widgets
    
-    age = col1.text_input("", placeholder="Age")
+    age = col1.text_input("Age", placeholder="Age")
     if age:
       try:
           age = int(age)
@@ -61,6 +63,31 @@ with st.form("my_form"):
     p1, p2, p3 = st.columns([2,1,2])
     
     submitted = p2.form_submit_button("Submit")
+
+if submitted:
+    # Create a dictionary of the inputs
+    input_data = {
+        "age": age,
+        "Gender": Gender,
+        "bp": bp,
+        "cholesterol": cholesterol,
+        "exercise_habit": exercise_habit,
+        "smokes": smokes,
+        "family_hrt_ds": family_hrt_ds,
+        "diabetes": diabetes,
+        "bmi": bmi,
+        "stress_lv": stress_lv,
+        "sugar_con": sugar_con
+    }
+
+    # st.write("Collected Input Data:")
+    # st.json(input_data)
+
+
+    input_df = pd.DataFrame([input_data])
+    st.write("DataFreme ready for Model")
+    st.dataframe(input_df)
+
 
 # Outside the form
 # if submitted:
