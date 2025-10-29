@@ -11,7 +11,7 @@ import pickle
 
 app = FastAPI()
 
-with open("model(LG).pkl","rb") as f:
+with open("model_ML.pkl","rb") as f:
     model = pickle.load(f)
 
 print(model.feature_names_in_)
